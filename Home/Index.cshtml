@@ -1,0 +1,31 @@
+﻿@model SearchInvestigationViewModel
+<br />
+<form action="@Url.Action("Search","Home")" method='POST'>
+
+    @Html.ValidationSummary()
+
+    <h4>@Html.Encode("Tick to enable required search engines")</h4>
+
+    @{
+        for (int i = 0; i < Model.SearchEngines.Count(); i++)
+        {
+            <div class="checkbox">
+                    <label>
+                        @Html.HiddenFor(model => model.SearchEngines[i].Name)
+                        @Html.CheckBoxFor(model => model.SearchEngines[i].Enabled)
+                        @Html.DisplayFor(model => model.SearchEngines[i].Name)
+                        @Html.HiddenFor(model => model.SearchEngines[i].Enabled)
+                        @Html.HiddenFor(model => model.SearchEngines[i].SearchURL)
+                        @Html.HiddenFor(model => model.SearchEngines[i].Selector)
+
+                    </label>
+            </div>
+        }
+    }
+
+
+    <label>Search</label>
+    <input name='searchTerm' />
+    <br />
+    <input type='submit' />
+</form>

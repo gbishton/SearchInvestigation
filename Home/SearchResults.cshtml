@@ -1,0 +1,40 @@
+﻿@model SearchInvestigationViewModel
+<br />
+The following results were found for @Model.SearchTerm
+<br />
+<ul>
+
+    <table class="table" id="tblSearchResults">
+        <thead>
+            <tr>
+                <th>
+                    Source
+                </th>
+                
+                <th>
+                    Result
+                </th>
+            </tr>
+        </thead>
+        @foreach (var searchEngine in Model.SearchEngines)
+        {
+            if (searchEngine.Enabled == true)
+            {
+                for (int i = 0; i < searchEngine.SearchResults.Count(); i++)
+                {
+                        <tr>
+                            <td>
+                                @searchEngine.Name
+                            </td>
+
+                            <td>
+                                <a href="@searchEngine.SearchResults[i]">@searchEngine.SearchResults[i]</a></td>
+                        </tr>
+                }
+
+            }
+
+
+        }
+    </table>
+ </ul>
